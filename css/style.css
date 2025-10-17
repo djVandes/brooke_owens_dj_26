@@ -128,9 +128,28 @@ h1, h2, h3, p { cursor: default; }
 .hero__feature .hero__feature-inner { pointer-events: auto; text-align: center; }
 .hero__feature h3 { margin: 0 0 0.35rem 0; font-size: 1.15rem; }
 .hero__feature-blurb { margin: 0 0 0.6rem 0; font-size: 0.95rem; color: var(--baby); }
-.hero__feature-thumbs { display:flex; gap:1rem; justify-content:center; }
-.hero__feature-thumbs a { display:block; width:250px; height:250px; overflow:hidden; border-radius:6px; }
-.hero__feature-thumbs img { width:100%; height:100%; object-fit:cover; display:block; }
+.hero__feature-thumbs {
+    display: grid;
+    gap: 1rem;
+    /* allow thumbnails to shrink to 100px minimum and expand to fill columns */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    align-items: start;
+    justify-items: center;
+    justify-content: center; /* center the whole grid so last (partial) row is centered */
+}
+.hero__feature-thumbs a {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+    aspect-ratio: 1 / 1; /* keep thumbnails square */
+}
+.hero__feature-thumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
 /* Hero thumbnails: blue highlight and slight scale on hover (only for hero thumbnails) */
 .hero__feature-thumbs img {
@@ -145,8 +164,8 @@ h1, h2, h3, p { cursor: default; }
 }
 
 @media (max-width: 700px) {
-    .hero__feature { width: 80vw; max-width: 360px; }
-    .hero__feature-thumbs a { width:44px; height:44px; }
+    .hero__feature { width: 92vw; max-width: 920px; }
+    /* allow grid to fold naturally on smaller screens; keep thumbnails at min 250px */
 }
 
 .hero__content {
