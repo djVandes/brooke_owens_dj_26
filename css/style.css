@@ -1,0 +1,703 @@
+html {
+    scroll-behavior: smooth;
+}
+
+:root{
+    /*COLOURS*/
+    --black: #000000;  
+    --navy: #0a101b;         
+    --plum: #1d1f52;      
+    --acc: #7a1e2e;
+    --burn: #521821;
+    --cream: #ead7ce;  
+    --baby: #bbc5df; /* Light cream for contrast */    
+
+    --bs: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+body{
+    background-color: #000000; /* Set the background color to navy */
+    color: var(--cream); /* Ensure text is readable on navy background */
+    margin: 0;
+    padding: 0;
+}
+
+/* drama */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1, h2, p {
+    font-family: 'Oxygen';
+}
+
+/* Ensure text headings and paragraphs keep the default arrow cursor (not pointer) */
+h1, h2, h3, p { cursor: default; }
+
+/* navbar */
+.navbar {
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it stays on top */;
+    text-transform: uppercase;
+}
+
+/* Header menu styling */
+.header-menu {
+    list-style: none;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 3 auto; /* Center horizontally */
+    padding: 0; /* Remove any default padding */
+}
+
+.header-menu a {
+    font-size: 1.25em; /* Enlarge the h1 text size */
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Oxygen';
+    flex: 1 1 40%;
+    min-width: 120px;
+    margin: 8px;
+}
+
+.header-menu a:hover {
+    color: var(--baby); /* Change color on hover */
+}
+
+/* Hero Section Styles */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+}
+
+.hero__stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0; left: 0;
+    z-index: 1;
+}
+
+.hero__moon {
+    position: absolute;
+    left: 50%;
+    top: 50%; /* Position the moon halfway down the viewport */
+    transform: translate(-50%, -50%); /* Center the moon */
+    width: auto; /* 2/3 of the viewport width */
+    max-width: 200%;
+    z-index: 4;
+    transition: transform 0.2s;
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* Hero feature (replaces satellite) */
+.hero__feature {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    width: 85vw;
+    background: rgba(0,0,0,0.45);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    pointer-events: none; /* allow clicks to pass through except interactive children */
+}
+.hero__feature .hero__feature-inner { pointer-events: auto; text-align: center; }
+.hero__feature h3 { margin: 0 0 0.35rem 0; font-size: 1.15rem; }
+.hero__feature-blurb { margin: 0 0 0.6rem 0; font-size: 0.95rem; color: var(--baby); }
+.hero__feature-thumbs { display:flex; gap:1rem; justify-content:center; }
+.hero__feature-thumbs a { display:block; width:250px; height:250px; overflow:hidden; border-radius:6px; }
+.hero__feature-thumbs img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Hero thumbnails: blue highlight and slight scale on hover (only for hero thumbnails) */
+.hero__feature-thumbs img {
+    transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+    transform-origin: center center;
+}
+.hero__feature-thumbs a:hover img {
+    transform: scale(1.05);
+    /* soft blue outline + stronger drop shadow */
+    box-shadow: 0 0 0 4px rgba(77,171,247,0.12), 0 12px 28px rgba(0,0,0,0.55);
+    filter: brightness(1.02);
+}
+
+@media (max-width: 700px) {
+    .hero__feature { width: 80vw; max-width: 360px; }
+    .hero__feature-thumbs a { width:44px; height:44px; }
+}
+
+.hero__content {
+    /* Make the content container span the full hero so children can be pinned
+       to the viewport edges (top-right and bottom-right). */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    font-family: 'Oxygen', bold;
+    margin: 0;
+    padding-top: 0;
+    pointer-events: none; /* allow clicks to pass through except for interactive children */
+}
+
+
+.hero__content h1{
+    /* Pin name to the top-right of the viewport */
+    position: absolute;
+    top: 7%;
+    right: 5%;
+    max-width: 60vw;
+    font-size: clamp(2rem, 6.5vw, 8rem);
+    color: var(--white);
+    font-family: 'Oxygen', bold;
+    margin: 0;
+    text-align: right;
+    pointer-events: auto; /* make the text interactable if needed */
+}
+
+.hero__content h2, h3{
+    /* Pin header to the bottom-right of the viewport */
+    font-family: 'Oxygen', bold;
+    max-width: 60vw;
+    font-size: clamp(2rem, 2.5vw, 5rem);
+    animation: fadeInUp 
+    
+    1s ease-out forwards;
+    color: var(--white);
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+    text-align: left;
+    margin: 0;
+    padding: 1rem;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    pointer-events: auto;
+}
+
+.hero__content h3{
+    max-width: 40vw;
+    font-size: clamp(1.5rem, 2vw, 4rem);
+    bottom: 5%;
+}
+
+.hero__content h1:hover, .hero__content h2:hover, .hero__content h3:hover  {
+    color: var(--baby);
+}
+
+.hero__scroll-arrow {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: var(--black);
+    animation: bounce 2s infinite;
+}
+
+.hero__scroll-arrow a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.button {
+    background-color: var(--acc); /* Button color */
+    color: var(--cream); /* Text color */
+    padding: 0.5em 1em; /* Padding for the button */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 2em; /* Font size for the button text */
+    text-transform: uppercase;
+    font-family: 'Oxygen';
+    transition: transform 300ms ease-in-out;
+    display: inline-block; /* Ensure transforms work properly */
+    text-decoration: none;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    background-color: var(--cream); /* Button color */
+    color: var(--navy); /* Text color */
+}
+.story {
+    padding-top: 5em;
+    padding-bottom: 4em;
+    background: linear-gradient(to bottom, 
+        rgb(0, 0, 0),
+        rgba(29, 31, 82, 0.3),
+        rgb(0, 0, 0)
+    ), url('../img/hubble.jpg');
+
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+    align-items: center; /* Center the experiences horizontally */
+    font-family: 'Oxygen', bold;  
+}
+
+/* Outcome starry background (reuse hero styles) */
+.outcome {
+    position: relative;
+    overflow: hidden;
+    padding: 4em 2rem;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+    color: var(--cream);
+}
+
+/* Lightbox modal for image closeups */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    display: flex; /* keep in flow so transitions can animate */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 260ms ease, visibility 260ms ease;
+}
+
+.lightbox[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lightbox-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    opacity: 0;
+    transition: opacity 260ms ease;
+}
+
+.lightbox-content {
+    position: relative;
+    width: 75vw;
+    max-width: 1200px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    z-index: 10000;
+}
+
+/* show overlay when lightbox is visible */
+.lightbox[aria-hidden="false"] .lightbox-overlay {
+    opacity: 1;
+}
+
+.lightbox-img {
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.lightbox-caption {
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    padding: 1rem;
+    border-radius: 6px;
+    color: var(--cream);
+    text-align: center; /* center caption and extra text */
+}
+
+.lightbox-title {
+    margin: 0 0 0.5rem 0;
+}
+
+.lightbox-text {
+    margin: 0;
+    max-height: 18vh;
+    overflow: auto;
+    font-size: 0.95rem; /* slightly smaller text */
+    text-align: center;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: rgba(0,0,0,0.6);
+    color: var(--cream);
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+@media (max-width: 900px) {
+    .lightbox-content {
+        width: 92vw;
+    }
+    .lightbox-text {
+        max-height: 22vh;
+    }
+}
+
+.outcome__background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.outcome .outcome-inner {
+    position: relative;
+    z-index: 5; /* sit above starry-night layers */
+}
+
+.outcome .starry-night, .outcome .stars, .outcome .twinkling {
+    pointer-events: none; /* do not block clicks */
+}
+
+.outcome h1{
+    animation: fadeInUp 1s ease-out forwards;
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 3em; /* Enlarge the h1 text size */
+}
+
+.outcome-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.outcome-poster img {
+    width: auto;
+    max-width: 90%;
+    height: auto;
+    max-height: 720px;
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    border-radius: 6px;
+    box-shadow: var(--bs);
+    object-fit: contain;
+}
+
+.outcome-text h2 {
+    font-size: 2em;
+    margin: 0.5rem 0 1rem;
+}
+
+.outcome-text p {
+    max-width: 80ch;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: var(--cream);
+    font-size: 1.05rem;
+}
+
+@media (max-width: 900px) {
+    .outcome-poster img {
+        max-height: 420px;
+    }
+    .outcome-inner {
+        padding: 0 1rem;
+    }
+}
+
+.story h1{
+    animation: fadeInUp 1s ease-out forwards;
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 3em; /* Enlarge the h1 text size */
+}
+
+/* Story blocks: image left / text right and alternate */
+.story-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+    /* span full viewport width minus horizontal padding so blocks touch edges visually */
+    width: calc(100% - 4rem);
+    margin: 0 auto;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.story-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2em;
+    background: rgba(0,0,0,0.45);
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: var(--bs);
+    /* prepare for hover pulse animation */
+    border: 2px solid transparent; /* allows pulse animation to animate border-color */
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.story-block:nth-child(even) {
+    /* flip columns for even blocks (image right, text left) */
+    grid-template-columns: 1fr 1fr;
+}
+
+.story-block:nth-child(odd) .story-img {
+    order: 0;
+}
+
+.story-block:nth-child(odd) .story-text {
+    order: 1;
+    padding-right: 3em;
+}
+
+.story-block:nth-child(even) .story-img {
+    order: 1; /* image on the right for even */
+}
+
+.story-block:nth-child(even) .story-text {
+    order: 0; /* text on the left for even */
+    padding-left: 3em;
+}
+
+.story-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-img img {
+    /* Preserve original painting aspect ratio without stretching or cropping */
+    width: auto;           /* allow natural width but constrain with max-width */
+    max-width: 100%;
+    height: auto;          /* keep height proportional to width */
+    max-height: 450px;     /* cap height so rows stay consistent */
+    border-radius: 6px;
+    box-shadow: var(--bs);
+    object-fit: contain;   /* ensure the whole painting is visible */
+    display: block;
+}
+
+.story-img figcaption {
+    margin-top: 0.5em;
+    font-size: 0.9em;
+    color: var(--baby);
+}
+
+.story-text p {
+    font-size: clamp(1em, 1.1vw + 0.8em, 1.1em);
+    line-height: 1.6;
+    color: var(--cream);
+    margin: 0;
+    text-align: left;
+}
+
+.story-title {
+    font-size: 1.5em;
+    margin: 0 0 0.5em 0;
+    color: var(--cream);
+    font-family: 'Oxygen', bold;
+}
+
+/* Responsive: stack column on small screens and center images */
+@media (max-width: 900px) {
+    .story-block {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .story-block .story-img, .story-block .story-text {
+        order: initial;
+        width: 100%;
+    }
+
+    .story-text p {
+        text-align: left;
+        padding: 0 0.5em;
+    }
+
+    /* reduce painting height on small screens so layout stays compact */
+    .story-img img {
+        max-height: 220px;
+    }
+}
+
+/* Hover effect: pulse blue outline and subtle lift */
+.story-block:hover {
+    animation: pulseBlue 1.6s ease-in-out infinite;
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.55);
+    border-color: #4dabf7; /* make the border visible as part of the pulse */
+}
+
+
+
+/* Pulsing blue outline animation */
+@keyframes pulseBlue {
+    0% {
+        border-color: #4dabf7;
+        box-shadow: 0 0 15px rgba(77, 171, 247, 0.4);
+    }
+    50% {
+        border-color: #74c0fc;
+        box-shadow: 0 0 25px rgba(116, 192, 252, 0.6);
+    }
+    100% {
+        border-color: #4dabf7;
+        box-shadow: 0 0 15px rgba(77, 171, 247, 0.4);
+    }
+}
+
+
+/* footer */
+.footer {
+    background: var(--black);
+    color: var(--cream);
+    text-align: center;
+    padding: 3em;
+    font-family: 'Oxygen';
+    font-size: 1rem;
+}
+
+.footer p {
+    margin: 0 0 1em;
+}
+
+.footer__social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em; /* space between icons */
+}
+
+.footer__link {
+    color: var(--cream);
+    font-size: 1.5em; /* Adjust icon size */
+    text-decoration: none;
+    transition: color 300ms ease;
+}
+
+.footer__link:hover {
+    color: var(--acc);
+}
+
+
+
+/* Starry Night Animation */
+.starry-night {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+.stars, .twinkling, .clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.stars {
+    background: url('../img/style/stars.png') repeat;
+    z-index: 1;
+}
+.twinkling {
+    background: url('../img/style/twinkling.png') repeat;
+    animation: moveTwinkling 200s linear infinite;
+    z-index: 2;
+    opacity: 0.7;
+}
+
+@keyframes moveTwinkling {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
+
+/* Ensure starry night layers do not block pointer events */
+.starry-night, .stars, .twinkling {
+    pointer-events: none;
+}
+
+/* Restore pointer events for header and navbar */
+header, .navbar, .header-menu, .header-menu a {
+    pointer-events: auto;
+}
+
+/* Transformations */
+
+/* Adjust the keyframe percentage based on the width of your content */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px); /* starts 50px below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}

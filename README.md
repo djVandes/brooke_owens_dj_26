@@ -1,2 +1,6 @@
-# brooke_owens_dj_26
-Brooke Owens Multi Media Application
+
+# Brooke Owens Application
+
+## Next features
+* fix body content
+* fix header for mobile

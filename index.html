@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Header -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Essay</title>
+    <link rel="shortcut icon" type="image/png" href="img/moon.png"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<!-- Title -->
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="header-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story-1">Story</a></li>
+                <li><a href="#outcome">Thanks</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero__background">
+            <!-- Starry night background moved here for correct stacking -->
+            <div class="starry-night">
+                <div class="stars"></div>
+                <div class="twinkling"></div>
+                <!-- Feature box replaces satellite; kept id="moon" so existing moon animation moves it -->
+                <div class="hero__feature hero__moon" id="moon">
+                    <div class="hero__feature-inner">
+                        <p class="hero__feature-blurb">A multimedia essay on intentionality illustrated in my drawings and paintings. <br>Click a thumbnail to jump to that part.</p>
+                        <div class="hero__feature-thumbs">
+                            <a href="#story-1"><img src="img/mope.png" alt="Watercolour" data-full="img/mope.full.png"></a>
+                            <a href="#story-2"><img src="img/blue.jpg" alt="Acrylic" data-full="img/blue.full.jpg"></a>
+                            <a href="#story-3"><img src="img/cowboy.png" alt="Graphite" data-full="img/cowboy.full.png"></a>
+                            <a href="#story-4"><img src="img/punch.png" alt="Gouache" data-full="img/punch.full.png"></a>
+                            <a href="#story-5"><img src="img/diva.png" alt="Mixed" data-full="img/diva.full.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__content">
+            <h1> DJ Vandesande </h1>
+            <h2><strong>Debugging My Internship: <br>When Intentionality Meets Innovation</strong></h2>
+            <h3>2025 Brooke Owens Fellowship Application</h3>
+            <!-- <div class="hero__explore">
+                <span class="hero__explore-arrow"><a href="#mission">check us out</a></span>
+            </div> -->
+            <!-- <div class="hero__scroll-arrow">
+                <a href="#mission">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div> -->
+        </div>
+    </section>
+
+
+
+    <!-- intro moved into hero as a featured element (replaces satellite) -->
+
+    <!-- My Works -->
+    <section class="story" id="story">
+        <h1>THE STORY</h1>
+        <div class="story-rows">
+            <article class="story-block" id="story-1">
+                <figure class="story-img">
+                    <img src="img/mope.png" data-full="img/mope_full.png">
+                    <figcaption>Watercolour, 2023</figcaption>
+                </figure>
+                <div class="story-text">
+                    <h2 class="story-title">It's no secret that interns don't always get the most exciting work. </h2>
+                    <p>At the beginning of my internship at Marvell, I found myself in exactly that position—assigned tasks that weren't challenging me. I knew this was a large company with interesting projects happening beyond my desk, and I knew that if I didn't assert myself by showing my managers what I could do, they would keep me in the same box.</p>
+                </div>
+            </article>
+
+            <article class="story-block" id="story-2">
+                <figure class="story-img">
+                    <img src="img/blue.jpg" data-full="img/blue_full.jpg">
+                    <figcaption>Acrylic, 2023</figcaption>
+                </figure>
+                <div class="story-text">
+                    <h2 class="story-title">So I made a choice: I would actively seek out the work I wanted to do.</h2>
+                    <p> I talked with my manager about taking on additional research alongside my assigned work, proposing that I explore AI applications in hardware design. Though initially wary about my juggling both responsibilities, my manager agreed. I began connecting with brilliant researchers working on AI for hardware, and discovered they were searching for reliable code generation tools for the notoriously difficult syntax of Verilog.</p>
+                </div>
+            </article>
+
+            <article class="story-block" id="story-3">
+                <figure class="story-img">
+                    <img src="img/cowboy.png" data-full="img/cowboy_full.png">
+                    <figcaption>Graphite, 2023</figcaption>
+                </figure>
+                <div class="story-text">
+                    <h2 class="story-title">I had found my project and my target became clear.</h2>
+                    <p>I wanted to create an AI code-generating tool using AWS to solve Marvell's ongoing problem of unreliable language models for hardware code.
+
+This required careful time management. I documented my progress meticulously so I could quickly switch between my design work and AI research without losing my train of thought. I scheduled meetings to align with extremely busy senior engineers for feedback on both projects. I engineered prompts, compared language models, and iterated relentlessly.</p>
+                </div>
+            </article>
+
+            <article class="story-block" id="story-4">
+                <figure class="story-img">
+                    <img src="img/punch.png" data-full="img/punch_full.png">
+                    <figcaption>Gouache, 2025</figcaption>
+                </figure>
+                <div class="story-text">
+                    <h2 class="story-title">Then came the hard part. Trial and Error, and Error, and Error</h2>
+                    <p> Iteration after iteration failed basic syntax tests. I tried training a private model on the company's codebase. I tested the newest models highest on code-generating leaderboards. Nothing worked! No matter how carefully I designed the single-agent system, it couldn't produce syntactically correct, compilable code without serious intervention. At that point, manual coding was faster. I considered giving up.</p>
+                </div>
+            </article>
+
+            <article class="story-block" id="story-5">
+                <figure class="story-img">
+                    <img src="img/diva.png" data-full="img/diva_full.png">
+                    <figcaption>Mixed Medium, 2024</figcaption>
+                </figure>
+                <div class="story-text">
+                    <h2 class="story-title">And finally, a breakthrough happened!</h2>
+                    <p>Then, in December 2024, a new paper introduced me to multi-agentic AI systems—interacting language models that could self-correct with human oversight but little intervention.
+After experimenting with different agent workflows and prompts, I completed DIVA (Debugging AI Verilog Agents), my first research project! I presented it at an internal conference in Boston to senior engineers and connections I'd made in American offices whom I had yet to meet in person. While Marvell didn't adopt DIVA company-wide, I helped bring multi-agentic coding to the table—and it successfully generated RSA encryption code from written coding standards, something previous systems the company was considering couldn't do.</p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+
+    <!-- Outcome / Thanks -->
+    <section class="outcome" id="outcome">
+        <div class="outcome__background">
+            <div class="starry-night">
+                <div class="stars"></div>
+                <div class="twinkling"></div>
+            </div>
+        </div>
+        <div class="outcome-inner">
+            <h1>Outcome & Thanks</h1>
+            <figure class="outcome-poster">
+                <img src="img/poster_pres.jpg" alt="Poster presentation">
+            </figure>
+            <div class="outcome-text">
+                
+                <p>The lasting connections I made became an inspiring group of engineers to discuss AI developments with, even as an intern. More importantly, I learned about my resilience in research. This project pushed me beyond anything I'd designed in university—there was no clear roadmap, no team, no deadlines except the conference date. I had to be entirely self-motivated.
+My manager, initially wary, was extremely impressed with the result.
+This experience fundamentally changed how I approach challenges. I now look more creatively at what I can do with my coding skills and passion for AI. Since then, I've pursued numerous projects involving image and text generation, all built from open-source documentation and frequent discussions with friends as enthralled with AI as I am. I learned that when I'm not being challenged, I don't wait for opportunity to find me—I seek it out, communicate what I want, and create it myself.
+</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer-->
+    <footer class="footer">
+        <p>&copy; 2025 Brooke Owens Multimedia Essay</p>
+        <div class="footer__social">
+            <a href="mailto:20djv2@queensu.ca" class="footer__link">
+                <i class="fa fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/dj-vandesande" class="footer__link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+
+    <!-- Lightbox modal for story images -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-overlay" data-close></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" aria-label="Close">×</button>
+            <img class="lightbox-img" src="" alt="" />
+            <div class="lightbox-caption">
+                <h3 class="lightbox-title"></h3>
+                <p class="lightbox-text"></p>
+            </div>
+        </div>
+    </div>
+
+            <!-- removed VANTA.TRUNK init because intro moved into hero -->
+
+</body>
+
+</html>
+
+
