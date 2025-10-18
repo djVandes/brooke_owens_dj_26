@@ -164,35 +164,28 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-
-
-// Smooth Moon Parallax Scroll Effect - Simplified
-let moonAnimationFrame;
+// Smooth Moon Parallax
+let thumbAnimationFrame;
 let lastScrollY = 0;
 let currentScrollY = 0;
 
-
-function animateMoon() {
-    const moon = document.getElementById('moon');
-    if (!moon) {
-        console.log('Moon element not found!');
-        return;
-    }
+function animateThumb() {
+    const thumb = document.getElementById('thumb');
 
     // Simple smooth interpolation without velocity complications
     const smoothingFactor = 0.08; // Lower = smoother, higher = more responsive
     currentScrollY += (lastScrollY - currentScrollY) * smoothingFactor;
     
     // Apply transform with consistent 2x multiplier (no easing multiplier to avoid jumps)
-    const moonOffset = currentScrollY * 2;
-    moon.style.transform = `translate(-50%, calc(-50% - ${moonOffset}px))`;
+    const thumbOffset = currentScrollY * 2;
+    thumb.style.transform = `translate(-50%, calc(-50% - ${thumbOffset}px))`;
     
     // Continue animation if there's still significant movement
     const difference = Math.abs(lastScrollY - currentScrollY);
     if (difference) {
-        moonAnimationFrame = requestAnimationFrame(animateMoon);
+        thumbAnimationFrame = requestAnimationFrame(animateThumb);
     } else {
-        moonAnimationFrame = null;
+        thumbAnimationFrame = null;
     }
 }
 
@@ -200,7 +193,7 @@ function animateMoon() {
 window.addEventListener('scroll', function() {
     lastScrollY = window.scrollY;
     
-    if (!moonAnimationFrame) {
-        moonAnimationFrame = requestAnimationFrame(animateMoon);
+    if (!thumbAnimationFrame) {
+        thumbAnimationFrame = requestAnimationFrame(animateThumb);
     }
 });

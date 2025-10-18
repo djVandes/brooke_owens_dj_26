@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Header -->
+<!-- header -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Essay</title>
-    <link rel="shortcut icon" type="image/png" href="img/moon.png"/>
+    <title>DJ Vandesande Multi Media Essay</title>
+    <link rel="shortcut icon" type="image/png" href="img/paint.png"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<!-- Title -->
+<!-- navbar -->
 <body>
     <header>
         <nav class="navbar">
@@ -28,23 +28,23 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- title page -->
     <section class="hero" id="home">
         <div class="hero__background">
-            <!-- Starry night background moved here for correct stacking -->
+            
             <div class="starry-night">
                 <div class="stars"></div>
                 <div class="twinkling"></div>
-                <!-- Feature box replaces satellite; kept id="moon" so existing moon animation moves it -->
-                <div class="hero__feature hero__moon" id="moon">
+
+                <div class="hero__feature hero__thumbnails" id="thumb">
                     <div class="hero__feature-inner">
-                        <p class="hero__feature-blurb">A multimedia essay illustraing initiative and inovation through drawings, paintings, and anecdotes.</p>
+                        <p>A multimedia essay illustraing initiative and inovation through drawings, paintings, and anecdotes.</p>
                         <div class="hero__feature-thumbs">
-                            <a href="#story-1"><img src="img/mope.png" alt="Watercolour" data-full="img/mope.full.png"></a>
-                            <a href="#story-2"><img src="img/blue.jpg" alt="Acrylic" data-full="img/blue.full.jpg"></a>
-                            <a href="#story-3"><img src="img/cowboy.png" alt="Graphite" data-full="img/cowboy.full.png"></a>
-                            <a href="#story-4"><img src="img/punch.png" alt="Gouache" data-full="img/punch.full.png"></a>
-                            <a href="#story-5"><img src="img/diva.png" alt="Mixed" data-full="img/diva.full.png"></a>
+                            <a href="#story-1"><img src="img/mope.png" alt="Watercolour"></a>
+                            <a href="#story-2"><img src="img/blue.jpg" alt="Acrylic"></a>
+                            <a href="#story-3"><img src="img/cowboy.png" alt="Graphite"></a>
+                            <a href="#story-4"><img src="img/punch.png" alt="Gouache"></a>
+                            <a href="#story-5"><img src="img/diva.png" alt="Mixed"></a>
                         </div>
                     </div>
                 </div>
@@ -53,16 +53,13 @@
         <div class="hero__content">
             <h1> DJ Vandesande </h1>
             <h2><strong>Debugging My Internship Experience: <br>Intentionality and Innovation</strong></h2>
-            <h3>2025 Brooke Owens Fellowship Application</h3>
+            <h3>Brooke Owens Class of 2026 Fellowship Application</h3>
 
         </div>
     </section>
 
 
-
-    <!-- intro moved into hero as a featured element (replaces satellite) -->
-
-    <!-- My Works -->
+    <!-- the story by brandi carlile -->
     <section class="story" id="story">
         <h1>THE STORY</h1>
         <div class="story-rows">
@@ -157,7 +154,7 @@
     </section>
 
 
-    <!-- Outcome / Thanks -->
+    <!-- Outcome and Thanks -->
     <section class="outcome" id="outcome">
         <div class="outcome__background">
             <div class="starry-night">
@@ -186,35 +183,21 @@
     </section>
 
 
-    <!-- Footer-->
+    <!-- footer-->
     <footer class="footer">
-        <p>&copy; 2025 Brooke Owens Multimedia Essay</p>
+        <p> Brooke Owens Class of 2026 Multimedia Essay</p>
         <div class="footer__social">
+            
             <a href="mailto:20djv2@queensu.ca" class="footer__link">
                 <i class="fa fa-envelope"></i>
             </a>
-            <a href="https://www.linkedin.com/dj-vandesande" class="footer__link">
+            <a href="https://www.linkedin.com/in/dj-vandesande/" class="footer__link">
                 <i class="fab fa-linkedin"></i>
             </a>
         </div>
     </footer>
 
     <script src="js/index.js"></script>
-
-    <!-- Lightbox modal for story images -->
-    <div id="lightbox" class="lightbox" aria-hidden="true">
-        <div class="lightbox-overlay" data-close></div>
-        <div class="lightbox-content" role="dialog" aria-modal="true">
-            <button class="lightbox-close" aria-label="Close">×</button>
-            <img class="lightbox-img" src="" alt="" />
-            <div class="lightbox-caption">
-                <h3 class="lightbox-title"></h3>
-                <p class="lightbox-text"></p>
-            </div>
-        </div>
-    </div>
-
-            <!-- removed VANTA.TRUNK init because intro moved into hero -->
 
 </body>
 
