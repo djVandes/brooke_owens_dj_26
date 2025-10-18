@@ -71,6 +71,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Prefer a high-resolution / full-size image if provided.
         let fullSrc = imgEl.getAttribute('data-full') || imgEl.getAttribute('data-large') || imgEl.getAttribute('data-full-src');
+        // If the clicked thumbnail doesn't have an explicit data-full, try to
+        // find a matching story image (same src) that may provide a data-full.
+        if (!fullSrc && src) {
+            const match = document.querySelector(`.story-img img[src="${src}"]`);
+            if (match) fullSrc = match.getAttribute('data-full') || match.getAttribute('data-large') || match.getAttribute('data-full-src');
+        }
         if (!fullSrc && src) {
             // try replacing common thumb/small suffixes: -thumb, _thumb, -small, _small
             const replaced = src.replace(/(-thumb|_thumb|-small|_small)\.(jpg|jpeg|png|webp)$/i, '.$2');
@@ -78,10 +84,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // populate content
+        if (!lightbox || !lightboxImg) return; // defensive: bail if elements missing
+
         lightboxImg.src = fullSrc || src;
         lightboxImg.alt = alt;
-        lightboxTitle.textContent = alt;
-        lightboxText.textContent = caption;
+        if (lightboxTitle) lightboxTitle.textContent = alt;
+        if (lightboxText) lightboxText.textContent = caption;
 
         // show with CSS fade-in
         lightbox.setAttribute('aria-hidden', 'false');
@@ -114,13 +122,40 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 420);
     }
 
+    // Attach click handlers to story images where users expect lightbox behavior
     document.querySelectorAll('.story-img img').forEach(img => {
         img.style.cursor = 'pointer';
-        img.addEventListener('click', () => openLightbox(img));
+        img.addEventListener('click', (e) => {
+            e.preventDefault?.();
+            openLightbox(img);
+        });
     });
 
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.querySelector('[data-close]').addEventListener('click', closeLightbox);
+    // Also allow hero thumbnails to open the lightbox (they're anchors to the story by default)
+    document.querySelectorAll('.hero__feature-thumbs img').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', (e) => {
+            // Prevent the anchor navigation when clicking the image
+            e.preventDefault();
+            e.stopPropagation();
+
+            const src = img.getAttribute('src');
+            // try to find a story image with matching src that has a data-full
+            const match = document.querySelector(`.story-img img[src="${src}"]`);
+            if (match) {
+                openLightbox(match);
+            } else {
+                openLightbox(img);
+            }
+        });
+    });
+
+    // Wire up lightbox close controls only if the lightbox exists
+    if (lightbox) {
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        const dataClose = lightbox.querySelector('[data-close]');
+        if (dataClose) dataClose.addEventListener('click', closeLightbox);
+    }
     // Close when clicking anywhere outside the content (the lightbox container itself)
     lightbox.addEventListener('click', function(e) {
         const content = lightbox.querySelector('.lightbox-content');

@@ -197,8 +197,20 @@
         </div>
     </footer>
 
-    <script src="js/index.js"></script>
+    <!-- Lightbox markup (used by js/index.js) -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-overlay" data-close></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button class="lightbox-close" aria-label="Close" data-close>&times;</button>
+            <img class="lightbox-img" src="" alt="" />
+            <div class="lightbox-caption">
+                <h3 class="lightbox-title"></h3>
+                <p class="lightbox-text"></p>
+            </div>
+        </div>
+    </div>
 
+    <script src="js/index.js"></script>
 </body>
 
 </html>
