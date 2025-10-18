@@ -38,19 +38,17 @@ h1, h2, p {
     font-family: 'Oxygen';
 }
 
-/* Ensure text headings and paragraphs keep the default arrow cursor (not pointer) */
 h1, h2, h3, p { cursor: default; }
 
 /* navbar */
 .navbar {
     position: fixed;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-    z-index: 1000; /* Ensure it stays on top */;
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 1000; 
     text-transform: uppercase;
 }
 
-/* Header menu styling */
 .header-menu {
     list-style: none;
     z-index: 1000;
@@ -58,12 +56,12 @@ h1, h2, h3, p { cursor: default; }
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    margin: 3 auto; /* Center horizontally */
-    padding: 0; /* Remove any default padding */
+    margin: 3 auto; 
+    padding: 0; 
 }
 
 .header-menu a {
-    font-size: 1.25em; /* Enlarge the h1 text size */
+    font-size: 1.25em; 
     color: var(--cream);
     text-decoration: none;
     font-family: 'Oxygen';
@@ -73,10 +71,12 @@ h1, h2, h3, p { cursor: default; }
 }
 
 .header-menu a:hover {
-    color: var(--baby); /* Change color on hover */
+    color: var(--baby); 
 }
 
-/* Hero Section Styles */
+
+/* title section */
+
 .hero {
     position: relative;
     width: 100%;
@@ -85,8 +85,6 @@ h1, h2, h3, p { cursor: default; }
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    margin: 0; /* Remove any default margin */
-    padding: 0; /* Remove any default padding */
 }
 
 .hero__stars {
@@ -129,20 +127,20 @@ h1, h2, h3, p { cursor: default; }
 .hero__feature h3 { margin: 0 0 0.35rem 0; font-size: 1.15rem; }
 .hero__feature-blurb { margin: 0 0 0.6rem 0; font-size: 0.95rem; color: var(--baby); }
 .hero__feature-thumbs {
-    display: grid;
+    /* Use a centered, wrapping flex layout so each row (including the last) is centered */
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
-    /* allow thumbnails to shrink to 100px minimum and expand to fill columns */
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-content: center; /* center items on each row */
     align-items: start;
-    justify-items: center;
-    justify-content: center; /* center the whole grid so last (partial) row is centered */
 }
 .hero__feature-thumbs a {
     display: block;
-    width: 100%;
     overflow: hidden;
     border-radius: 6px;
     aspect-ratio: 1 / 1; /* keep thumbnails square */
+    /* Allow items to shrink to 100px, grow responsively but not stretch a full row */
+    flex: 0 1 clamp(100px, 18vw, 220px);
 }
 .hero__feature-thumbs img {
     width: 100%;
@@ -226,9 +224,6 @@ h1, h2, h3, p { cursor: default; }
     bottom: 5%;
 }
 
-.hero__content h1:hover, .hero__content h2:hover, .hero__content h3:hover  {
-    color: var(--baby);
-}
 
 .hero__scroll-arrow {
     position: absolute;
@@ -494,6 +489,7 @@ h1, h2, h3, p { cursor: default; }
 
 .story-block:nth-child(odd) .story-text {
     order: 1;
+    padding-left: 3em;
     padding-right: 3em;
 }
 
@@ -504,6 +500,7 @@ h1, h2, h3, p { cursor: default; }
 .story-block:nth-child(even) .story-text {
     order: 0; /* text on the left for even */
     padding-left: 3em;
+    padding-right: 3em;
 }
 
 .story-img {
